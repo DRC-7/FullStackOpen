@@ -1,0 +1,27 @@
+title 0.4: new note
+
+note over browser:
+browser requests notes page from server
+server returns notes page
+end note
+
+note over browser:
+user types into the notes form element
+user submits form by pressing save
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server-->browser: HTTP [status code 302] - URL redirect
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "exercise test save", date: "2021-03-25T03:03:59.935Z" }, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
