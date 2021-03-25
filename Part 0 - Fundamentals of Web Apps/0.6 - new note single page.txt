@@ -1,0 +1,35 @@
+title 0.6: new note - single page
+
+note over browser:
+browser requests notes page from server
+server returns notes page
+end note
+
+note over browser:
+user types into the notes form element
+user submits form by pressing save
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server-->browser: HTTP [status code 302] - URL redirect
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+browser->server: JSON-data containing content and date 
+server-->browser: [{content: "single page app does not reload the whole page", date: "2021-03-25T03:37:34.038Z"}]
+server-->browser: Status Code 201 created - No more redirects
+
+note over browser:
+document.getElementById('notes_form') fetches the form-element from the page
+register an event handler to the form submit button
+creates e.preventDefault() to prevent GET
+end note
+
+note over server:
+expects all data to be a JSON string
+server expects to only POST content (determined by Content-type header)
+end note
